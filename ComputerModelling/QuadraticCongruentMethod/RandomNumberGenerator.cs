@@ -20,13 +20,22 @@ namespace ComputerModelling.QuadraticCongruentMethod
         private int _m;
         //Случайно число
         private double _y;
-        public RandomNumberGenerator(int parA, int parB, int parC, int parM, int parY)
+        public RandomNumberGenerator(int parA, int parB, int parC, int parY)
         {
             _a = parA;
             _b = parB;
             _c = parC;
-            _m = parM;
+            _m = CalculateM();
             _y = parY;
+        }
+        private int CalculateM()
+        {
+            int m = 1;
+            for(int i=0; i < I; i++)
+            {
+                m *= 2;
+            }
+            return m;
         }
         /// <summary>
         /// Генератор случайных чисел
