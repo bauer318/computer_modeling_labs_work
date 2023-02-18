@@ -9,22 +9,14 @@ namespace Graphic
 {
     public class ViewModel
     {
-        static RandomNumberGenerator random = new RandomNumberGenerator(6, 7, 3, 4001);
-        static double[] values;
-        static double[] dataPlot;
-        static double[] dataFunc;
-        private static double dX;
-        private static double mX;
+        private static RandomNumberGenerator _random = new RandomNumberGenerator(6, 7, 3, 4001);
+        private static double[] _values;
+        private static double[] _dataPlot;
+        private static double[] _dataFunc;
+        private static double _dX;
+        private static double _mX;
         public string TextDx { get; set; }
         public string TextMx { get; set; }
-
-        public ViewModel()
-        {
-            random.Estimate(values, out mX, out dX);
-            TextDx = dX.ToString();
-            TextMx = mX.ToString();
-        }
-
         public ISeries[] Series { get; set; } =
         {
 
@@ -38,7 +30,6 @@ namespace Graphic
 
             }
         };
-
         public ISeries[] SeriesStatFunc { get; set; } =
         {
             new LineSeries<double>
@@ -49,13 +40,14 @@ namespace Graphic
         };
 
         public LabelVisual TitleHistogram { get; set; } =
-       new LabelVisual
-       {
-           Text = "Гистогрмма частот",
-           TextSize = 10,
-           Padding = new LiveChartsCore.Drawing.Padding(15),
-           Paint = new SolidColorPaint(SKColors.DarkSlateGray)
-       };
+          new LabelVisual
+        {
+              Text = "Гистогрмма частот",
+              TextSize = 10,
+              Padding = new LiveChartsCore.Drawing.Padding(15),
+              Paint = new SolidColorPaint(SKColors.DarkSlateGray)
+        };
+
         public LabelVisual TitleStatFunc { get; set; } =
         new LabelVisual
         {
@@ -64,25 +56,9 @@ namespace Graphic
             Padding = new LiveChartsCore.Drawing.Padding(15),
             Paint = new SolidColorPaint(SKColors.DarkSlateGray)
         };
-        public static double[] GetDataPlot()
-        {
-            if(values==null)
-            random.GeneratorData(out values);
-            if (dataPlot == null)
-                random.MakeData(values, out dataPlot, out dataFunc, 0.0, 1.0);
-            return dataPlot;
-        }
-        public static double[] GetDataFunc()
-        {
-            if(values==null)
-            random.GeneratorData(out values);
-            if (dataFunc == null)
-                random.MakeData(values, out dataPlot, out dataFunc, 0.0, 1.0);
-            return dataFunc;
-        }
 
         public Axis[] YAxes { get; set; } = new Axis[]
-        {
+         {
             new Axis
             {
                 Name = "Pi",
@@ -90,7 +66,7 @@ namespace Graphic
                 MaxLimit = 1,
                 MinStep = 1
             }
-        };
+         };
         public Axis[] XAxes { get; set; } = new Axis[]
         {
             new Axis
@@ -101,12 +77,38 @@ namespace Graphic
             }
         };
         public Axis[] YAxesStatFunc { get; set; } = new Axis[]
-       {
+        {
             new Axis
             {
                 Name = "Fx(x)",
-                
+
             }
-       };
+        };
+
+        public ViewModel()
+        {
+            _random.Estimate(_values, out _mX, out _dX);
+            TextDx = _dX.ToString();
+            TextMx = _mX.ToString();
+        }
+
+        public static double[] GetDataPlot()
+        {
+            if(_values==null)
+            _random.GeneratorData(out _values);
+            if (_dataPlot == null)
+                _random.MakeData(_values, out _dataPlot, out _dataFunc, 0.0, 1.0);
+            return _dataPlot;
+        }
+        public static double[] GetDataFunc()
+        {
+            if(_values==null)
+            _random.GeneratorData(out _values);
+            if (_dataFunc == null)
+                _random.MakeData(_values, out _dataPlot, out _dataFunc, 0.0, 1.0);
+            return _dataFunc;
+        }
+
+        
     }
 }
