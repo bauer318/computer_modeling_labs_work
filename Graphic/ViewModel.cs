@@ -63,8 +63,7 @@ namespace Graphic
             {
                 Name = "Pi",
                 MinLimit = 0,
-                MaxLimit = 0.1/*,
-                MinStep = 0.1*/
+                MaxLimit = 0.1
             }
          };
         public Axis[] XAxes { get; set; } = new Axis[]
