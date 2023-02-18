@@ -36,9 +36,9 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Content="M(x)= " Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
-            <TextBlock Text="2.0125458412" Grid.Column="1" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Binding TextMx}" Grid.Column="1" VerticalAlignment="Center"></TextBlock>
             <Label Content="D(x)= " Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
-            <TextBlock Text="0.0012458542" Grid.Column="3" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{Binding TextDx}" Grid.Column="3" VerticalAlignment="Center"></TextBlock>
         </Grid>
         
         </Grid>

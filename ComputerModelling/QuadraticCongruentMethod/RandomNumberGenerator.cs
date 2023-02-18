@@ -105,7 +105,7 @@ namespace ComputerModelling.QuadraticCongruentMethod
         /// <param name="parValues">Случайнные числа</param>
         /// <param name="parMx">Математическое ожидание</param>
         /// <param name="parDx">Исправленная выборочная дисперсия</param>
-        private void Estimate(double[] parValues,out double parMx, out double parDx)
+        public void Estimate(double[] parValues,out double parMx, out double parDx)
         {
             double m2 = 0;
             parMx = 0;

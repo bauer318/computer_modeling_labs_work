@@ -22,8 +22,9 @@ namespace Graphic
     {
         public MainWindow()
         {
+            ViewModel viewModel = new ViewModel();
             InitializeComponent();
-            DataContext = new ViewModel();
+            DataContext = viewModel;
         }
     }
 }

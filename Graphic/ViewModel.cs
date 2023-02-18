@@ -13,8 +13,17 @@ namespace Graphic
         static double[] values;
         static double[] dataPlot;
         static double[] dataFunc;
-        public string Text { get; set; }
+        private static double dX;
+        private static double mX;
+        public string TextDx { get; set; }
+        public string TextMx { get; set; }
 
+        public ViewModel()
+        {
+            random.Estimate(values, out mX, out dX);
+            TextDx = dX.ToString();
+            TextMx = mX.ToString();
+        }
 
         public ISeries[] Series { get; set; } =
         {
