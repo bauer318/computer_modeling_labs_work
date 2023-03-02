@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerModelling", "Comput
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphic", "Graphic\Graphic.csproj", "{C1015CE4-FBCA-4285-B8B7-729C38AACF72}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleOutput", "ConsoleOutput\ConsoleOutput.csproj", "{A4E05722-DD17-476D-AA7C-16EF6E4C3ACB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C1015CE4-FBCA-4285-B8B7-729C38AACF72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1015CE4-FBCA-4285-B8B7-729C38AACF72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1015CE4-FBCA-4285-B8B7-729C38AACF72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4E05722-DD17-476D-AA7C-16EF6E4C3ACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4E05722-DD17-476D-AA7C-16EF6E4C3ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4E05722-DD17-476D-AA7C-16EF6E4C3ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4E05722-DD17-476D-AA7C-16EF6E4C3ACB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
