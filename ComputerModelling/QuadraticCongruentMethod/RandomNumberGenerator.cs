@@ -118,5 +118,16 @@ namespace ComputerModelling.QuadraticCongruentMethod
             m2 /= N;
             parDx = (m2 - parMx * parMx) * N / (N - 1);
         }
+
+        public double GetMoment(double parDegre, double[] values)
+        {
+            int N = values.Length;
+            double xi = 0.0;
+            for(int i=0; i<N; i++)
+            {
+                xi += Math.Pow(values[i], parDegre);
+            }
+            return xi / N;
+        }
     }
 }

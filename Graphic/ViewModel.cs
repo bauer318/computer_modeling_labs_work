@@ -15,8 +15,12 @@ namespace Graphic
         private static double[] _dataFunc;
         private static double _dX;
         private static double _mX;
+        private static double _m2;
+        private static double _m3;
         public string TextDx { get; set; }
         public string TextMx { get; set; }
+        public string TextM2 { get; set; }
+        public string TextM3 { get; set; }
         public ISeries[] Series { get; set; } =
         {
 
@@ -87,8 +91,12 @@ namespace Graphic
         public ViewModel()
         {
             _random.Estimate(_values, out _mX, out _dX);
+            _m2 = _random.GetMoment(2, _values);
+            _m3 = _random.GetMoment(3, _values);
             TextDx = _dX.ToString();
             TextMx = _mX.ToString();
+            TextM2 = _m2.ToString();
+            TextM3 = _m3.ToString();
         }
 
         public static double[] GetDataPlot()
