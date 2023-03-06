@@ -13,7 +13,7 @@ namespace ConsoleOutput
             double[] dataPlot;
             double[] dataFunc;
             random.GeneratorData(out values);
-            random.MakeData(values, out dataPlot, out dataFunc, 0.0, 0.1);
+            random.MakeData(values, out dataPlot, out dataFunc, 0.0, 1.0);
             double[] dataPlotPearson = PearsonCriteriaWorker.GetDataPlot(dataPlot, 7000, 16);
             PearsonCriteriaWorker.Xi2(dataPlotPearson, p, random.K, 7000);
             Console.Read();
