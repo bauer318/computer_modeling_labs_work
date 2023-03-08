@@ -43,6 +43,9 @@ namespace Graphic
         /// </summary>
         private static double _m3;
 
+        public double[] Values { get; private set; }
+        public int N { get; private set; }
+
         private readonly double[] _pearsonDataPlot;
         private readonly double _xi2;
         private readonly double[] _pk;
@@ -135,6 +138,8 @@ namespace Graphic
             TextXi2 = Math.Round(_xi2, 4, MidpointRounding.AwayFromZero).ToString();
             _lambda = KolmogorovCriteriaWorker.Lambda(_values, _random.G_N);
             TextLambda = Math.Round(_lambda, 4, MidpointRounding.AwayFromZero).ToString();
+            Values = _values;
+            N = _random.G_N;
         }
 
         public static double[] GetDataPlot()

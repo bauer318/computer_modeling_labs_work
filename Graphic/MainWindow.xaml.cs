@@ -20,11 +20,19 @@ namespace Graphic
     /// </summary>
     public partial class MainWindow : Window
     {
+        ViewModel viewModel;
+
         public MainWindow()
         {
-            ViewModel viewModel = new ViewModel();
+            viewModel = new ViewModel();
             InitializeComponent();
             DataContext = viewModel;
+        }
+
+        private void PokerTestBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PokerTestWindow pokerTestWindow = new PokerTestWindow(viewModel.Values, viewModel.N);
+            pokerTestWindow.ShowDialog();
         }
     }
 }

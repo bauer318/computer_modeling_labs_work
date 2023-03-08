@@ -55,11 +55,13 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Content="xi^2= " Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
             <TextBlock Text="{Binding TextXi2}" Grid.Column="1" VerticalAlignment="Center"></TextBlock>
             <Label Content="λ= " Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
             <TextBlock Text="{Binding TextLambda}" Grid.Column="3" VerticalAlignment="Center"></TextBlock>
+            <Button x:Name="PokerTestBtn" Content="Покер-Тест" Grid.Column="4" Click="PokerTestBtn_Click" Background="Green" Width="80"></Button>
         </Grid>
     </Grid>
 </Window>
