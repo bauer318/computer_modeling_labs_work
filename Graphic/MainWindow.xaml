@@ -53,9 +53,13 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Content="xi^2= " Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
             <TextBlock Text="{Binding TextXi2}" Grid.Column="1" VerticalAlignment="Center"></TextBlock>
+            <Label Content="λ= " Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+            <TextBlock Text="{Binding TextLambda}" Grid.Column="3" VerticalAlignment="Center"></TextBlock>
         </Grid>
     </Grid>
 </Window>

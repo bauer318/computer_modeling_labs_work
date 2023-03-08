@@ -1,4 +1,5 @@
-﻿using ComputerModelling.Pearson;
+﻿using ComputerModelling.Kolmogorov;
+using ComputerModelling.Pearson;
 using ComputerModelling.QuadraticCongruentMethod;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
@@ -6,12 +7,13 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.VisualElements;
 using SkiaSharp;
 using System;
+using System.Globalization;
 
 namespace Graphic
 {
     public class ViewModel
     {
-        private static RandomNumberGenerator _random = new RandomNumberGenerator(6, 7, 3, 4001);
+        private static readonly RandomNumberGenerator _random = new RandomNumberGenerator(6, 7, 3, 4001);
         /// <summary>
         /// массив случайных значений
         /// </summary>
@@ -41,14 +43,16 @@ namespace Graphic
         /// </summary>
         private static double _m3;
 
-        private double[] _pearsonDataPlot;
-        private double _xi2;
-        private double[] _pk;
+        private readonly double[] _pearsonDataPlot;
+        private readonly double _xi2;
+        private readonly double[] _pk;
+        private readonly double _lambda;
         public string TextDx { get; private set; }
         public string TextMx { get; private set; }
         public string TextM2 { get; private set; }
         public string TextM3 { get; private set; }
         public string TextXi2 { get; private set; }
+        public string TextLambda { get; private set; }
         public ISeries[] Series { get; set; } =
         {
 
@@ -129,6 +133,8 @@ namespace Graphic
             _pearsonDataPlot = PearsonCriteriaWorker.GetDataPlot(_dataPlot, _random.G_N, _random.K);
             _xi2 = PearsonCriteriaWorker.Xi2(_pearsonDataPlot, _pk, _random.K, _random.G_N);
             TextXi2 = Math.Round(_xi2, 4, MidpointRounding.AwayFromZero).ToString();
+            _lambda = KolmogorovCriteriaWorker.Lambda(_values, _random.G_N);
+            TextLambda = Math.Round(_lambda, 4, MidpointRounding.AwayFromZero).ToString();
         }
 
         public static double[] GetDataPlot()

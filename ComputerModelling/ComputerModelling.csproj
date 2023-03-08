@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Kolmogorov\KolmogorovCriteriaWorker.cs" />
     <Compile Include="Pearson\PearsonCriteriaWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuadraticCongruentMethod\RandomNumberGenerator.cs" />
