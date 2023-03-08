@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:Graphic" 
         xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
-            <Grid.RowDefinitions>
+         <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-            <RowDefinition/>
-            <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <lvc:CartesianChart Grid.Row="0" 
                                 Series="{Binding Series}"
@@ -48,6 +49,13 @@
             <Label Content="M3(x)= " Grid.Column="6" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
             <TextBlock Text="{Binding TextM3}" Grid.Column="7" VerticalAlignment="Center"></TextBlock>
         </Grid>
-        
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="xi^2= " Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+            <TextBlock Text="{Binding TextXi2}" Grid.Column="1" VerticalAlignment="Center"></TextBlock>
         </Grid>
+    </Grid>
 </Window>

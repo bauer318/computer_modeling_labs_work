@@ -1,4 +1,5 @@
-﻿using ComputerModelling.QuadraticCongruentMethod;
+﻿using ComputerModelling.Pearson;
+using ComputerModelling.QuadraticCongruentMethod;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -39,10 +40,15 @@ namespace Graphic
         /// третий момент
         /// </summary>
         private static double _m3;
-        public string TextDx { get; set; }
-        public string TextMx { get; set; }
-        public string TextM2 { get; set; }
-        public string TextM3 { get; set; }
+
+        private double[] _pearsonDataPlot;
+        private double _xi2;
+        private double[] _pk;
+        public string TextDx { get; private set; }
+        public string TextMx { get; private set; }
+        public string TextM2 { get; private set; }
+        public string TextM3 { get; private set; }
+        public string TextXi2 { get; private set; }
         public ISeries[] Series { get; set; } =
         {
 
@@ -119,6 +125,10 @@ namespace Graphic
             TextMx = Math.Round(_mX, 4, MidpointRounding.AwayFromZero).ToString();
             TextM2 = Math.Round(_m2, 4, MidpointRounding.AwayFromZero).ToString();
             TextM3 = Math.Round(_m3, 4, MidpointRounding.AwayFromZero).ToString();
+            _pk = PearsonCriteriaWorker.GetProbalities(_random.K);
+            _pearsonDataPlot = PearsonCriteriaWorker.GetDataPlot(_dataPlot, _random.G_N, _random.K);
+            _xi2 = PearsonCriteriaWorker.Xi2(_pearsonDataPlot, _pk, _random.K, _random.G_N);
+            TextXi2 = Math.Round(_xi2, 4, MidpointRounding.AwayFromZero).ToString();
         }
 
         public static double[] GetDataPlot()
