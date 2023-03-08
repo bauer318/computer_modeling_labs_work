@@ -28,7 +28,7 @@
                             Title="{Binding TitleStatFunc}"
                                 
                 />
-        <Grid Grid.Row="2" Background="Chartreuse">
+        <Grid Grid.Row="2" Background="DarkGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>

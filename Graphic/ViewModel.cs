@@ -4,18 +4,40 @@ using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.VisualElements;
 using SkiaSharp;
+using System;
 
 namespace Graphic
 {
     public class ViewModel
     {
         private static RandomNumberGenerator _random = new RandomNumberGenerator(6, 7, 3, 4001);
+        /// <summary>
+        /// массив случайных значений
+        /// </summary>
         private static double[] _values;
+        /// <summary>
+        /// данные гистрограммы
+        /// </summary>
         private static double[] _dataPlot;
+        /// <summary>
+        /// данные статической функции
+        /// </summary>
         private static double[] _dataFunc;
+        /// <summary>
+        /// Дисперсия
+        /// </summary>
         private static double _dX;
+        /// <summary>
+        /// математическое ожидание
+        /// </summary>
         private static double _mX;
+        /// <summary>
+        /// второй момент
+        /// </summary>
         private static double _m2;
+        /// <summary>
+        /// третий момент
+        /// </summary>
         private static double _m3;
         public string TextDx { get; set; }
         public string TextMx { get; set; }
@@ -29,7 +51,7 @@ namespace Graphic
 
                 Values = GetDataPlot(),
                 Stroke = null,
-                Fill = new SolidColorPaint(SKColors.CornflowerBlue),
+                Fill = new SolidColorPaint(SKColors.DarkRed),
                 IgnoresBarPosition = true,
 
             }
@@ -47,18 +69,18 @@ namespace Graphic
           new LabelVisual
         {
               Text = "Гистогрмма частот",
-              TextSize = 10,
+              TextSize = 12,
               Padding = new LiveChartsCore.Drawing.Padding(15),
-              Paint = new SolidColorPaint(SKColors.DarkSlateGray)
+              Paint = new SolidColorPaint(SKColors.Black)
         };
 
         public LabelVisual TitleStatFunc { get; set; } =
         new LabelVisual
         {
             Text = "Статическая функция распределения",
-            TextSize = 10,
+            TextSize = 12,
             Padding = new LiveChartsCore.Drawing.Padding(15),
-            Paint = new SolidColorPaint(SKColors.DarkSlateGray)
+            Paint = new SolidColorPaint(SKColors.Black)
         };
 
         public Axis[] YAxes { get; set; } = new Axis[]
@@ -93,10 +115,10 @@ namespace Graphic
             _random.Estimate(_values, out _mX, out _dX);
             _m2 = _random.GetMoment(2, _values);
             _m3 = _random.GetMoment(3, _values);
-            TextDx = _dX.ToString();
-            TextMx = _mX.ToString();
-            TextM2 = _m2.ToString();
-            TextM3 = _m3.ToString();
+            TextDx = Math.Round(_dX,4,MidpointRounding.AwayFromZero).ToString();
+            TextMx = Math.Round(_mX, 4, MidpointRounding.AwayFromZero).ToString();
+            TextM2 = Math.Round(_m2, 4, MidpointRounding.AwayFromZero).ToString();
+            TextM3 = Math.Round(_m3, 4, MidpointRounding.AwayFromZero).ToString();
         }
 
         public static double[] GetDataPlot()
