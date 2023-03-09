@@ -26,7 +26,7 @@ namespace ComputerModelling.Pearson
             return pArray;
         }
         /// <summary>
-        /// функция вычисления критерии xi2 для
+        /// функция вычисления xi2 для
         /// критерия Писона
         /// </summary>
         /// <param name="parHst">Число попаданий случайной величины в интервалы</param>
