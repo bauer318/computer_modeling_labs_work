@@ -1,5 +1,4 @@
 ﻿using ComputerModelling.Kolmogorov;
-using ComputerModelling.Pearson;
 using ComputerModelling.QuadraticCongruentMethod;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
@@ -34,27 +33,12 @@ namespace Graphic
         /// математическое ожидание
         /// </summary>
         private static double _mX;
-        /// <summary>
-        /// второй момент
-        /// </summary>
-        private static double _m2;
-        /// <summary>
-        /// третий момент
-        /// </summary>
-        private static double _m3;
 
-        public double[] Values { get; private set; }
         public int N { get; private set; }
 
-        private readonly double[] _pearsonDataPlot;
-        private readonly double _xi2;
-        private readonly double[] _pk;
         private readonly double _lambda;
         public string TextDx { get; private set; }
         public string TextMx { get; private set; }
-        public string TextM2 { get; private set; }
-        public string TextM3 { get; private set; }
-        public string TextXi2 { get; private set; }
         public string TextLambda { get; private set; }
         public ISeries[] Series { get; set; } =
         {
@@ -126,20 +110,10 @@ namespace Graphic
         public ViewModel()
         {
             _random.Estimate(_values, out _mX, out _dX);
-            _m2 = _random.GetMoment(2, _values);
-            _m3 = _random.GetMoment(3, _values);
             TextDx = Math.Round(_dX,4,MidpointRounding.AwayFromZero).ToString();
             TextMx = Math.Round(_mX, 4, MidpointRounding.AwayFromZero).ToString();
-            TextM2 = Math.Round(_m2, 4, MidpointRounding.AwayFromZero).ToString();
-            TextM3 = Math.Round(_m3, 4, MidpointRounding.AwayFromZero).ToString();
-            _pk = PearsonCriteriaWorker.GetProbalities(_random.K);
-            _pearsonDataPlot = PearsonCriteriaWorker.GetDataPlot(_dataPlot, _random.G_N, _random.K);
-            _xi2 = PearsonCriteriaWorker.Xi2(_pearsonDataPlot, _pk, _random.K, _random.G_N);
-            TextXi2 = Math.Round(_xi2, 4, MidpointRounding.AwayFromZero).ToString();
             _lambda = KolmogorovCriteriaWorker.Lambda(_values, _random.G_N);
             TextLambda = Math.Round(_lambda, 4, MidpointRounding.AwayFromZero).ToString();
-            Values = _values;
-            N = _random.G_N;
         }
 
         public static double[] GetDataPlot()

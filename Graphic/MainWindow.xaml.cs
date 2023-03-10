@@ -28,11 +28,5 @@ namespace Graphic
             InitializeComponent();
             DataContext = viewModel;
         }
-
-        private void PokerTestBtn_Click(object sender, RoutedEventArgs e)
-        {
-            PokerTestWindow pokerTestWindow = new PokerTestWindow(viewModel.Values, viewModel.N);
-            pokerTestWindow.ShowDialog();
-        }
     }
 }

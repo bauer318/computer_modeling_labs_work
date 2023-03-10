@@ -43,9 +43,6 @@
   <ItemGroup>
     <Compile Include="InverseFunctionMethod\InverseFunctionMethodGenerator.cs" />
     <Compile Include="Kolmogorov\KolmogorovCriteriaWorker.cs" />
-    <Compile Include="Pearson\PearsonCriteriaWorker.cs" />
-    <Compile Include="PokerTest\PokerTest.cs" />
-    <Compile Include="PokerTest\PokerTestValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuadraticCongruentMethod\RandomNumberGenerator.cs" />
   </ItemGroup>
