@@ -9,14 +9,25 @@ namespace ComputerModelling.InverseFunctionMethod
     public class InverseFunctionMethodGenerator
     {
         private readonly double[] _r;
-        
+
+        private static InverseFunctionMethodGenerator _instance;
+
         private InverseFunctionMethodGenerator() { }
-        public InverseFunctionMethodGenerator(double[] parR)
+        private InverseFunctionMethodGenerator(double[] parR)
         {
             _r = parR;
         }
 
-        public void GenerateByInvereFunctionMethod(out double[] parXValuesArray)
+        public static InverseFunctionMethodGenerator GetInstance(double[] parR)
+        {
+            if (_instance == null)
+            {
+                _instance = new InverseFunctionMethodGenerator(parR);
+            }
+            return _instance;
+        }
+
+        public void GenerateByInverseFunctionMethod(out double[] parXValuesArray)
         {
             int n = _r.Length;
             parXValuesArray = new double[n];

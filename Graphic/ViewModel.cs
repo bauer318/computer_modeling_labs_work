@@ -1,4 +1,5 @@
-﻿using ComputerModelling.Kolmogorov;
+﻿using ComputerModelling.InverseFunctionMethod;
+using ComputerModelling.Kolmogorov;
 using ComputerModelling.QuadraticCongruentMethod;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
@@ -14,9 +15,15 @@ namespace Graphic
     {
         private static readonly RandomNumberGenerator _random = new RandomNumberGenerator(6, 7, 3, 4001);
         /// <summary>
-        /// массив случайных значений
+        /// массив случайных значений равномерного распределения на [0;1)
         /// </summary>
         private static double[] _values;
+
+        /// <summary>
+        /// массив случайных значений по заданному распределению на [0;1.5)
+        /// </summary>
+        private static double[] _xValues;
+
         /// <summary>
         /// данные гистрограммы
         /// </summary>
@@ -109,27 +116,33 @@ namespace Graphic
 
         public ViewModel()
         {
-            _random.Estimate(_values, out _mX, out _dX);
+            _random.Estimate(_xValues, out _mX, out _dX);
             TextDx = Math.Round(_dX,4,MidpointRounding.AwayFromZero).ToString();
             TextMx = Math.Round(_mX, 4, MidpointRounding.AwayFromZero).ToString();
-            _lambda = KolmogorovCriteriaWorker.Lambda(_values, _random.G_N);
+            _lambda = KolmogorovCriteriaWorker.Lambda(_xValues, _random.G_N);
             TextLambda = Math.Round(_lambda, 4, MidpointRounding.AwayFromZero).ToString();
         }
 
         public static double[] GetDataPlot()
         {
-            if(_values==null)
-            _random.GeneratorData(out _values);
+            if (_values == null)
+            {
+                _random.GeneratorData(out _values);
+                InverseFunctionMethodGenerator.GetInstance(_values).GenerateByInverseFunctionMethod(out _xValues);
+            }
             if (_dataPlot == null)
-                _random.MakeData(_values, out _dataPlot, out _dataFunc, 0.0, 1.0);
+                _random.MakeData(_xValues, out _dataPlot, out _dataFunc, 0.0, 1.5);
             return _dataPlot;
         }
         public static double[] GetDataFunc()
         {
-            if(_values==null)
-            _random.GeneratorData(out _values);
+            if (_values == null)
+            {
+                _random.GeneratorData(out _values);
+                InverseFunctionMethodGenerator.GetInstance(_values).GenerateByInverseFunctionMethod(out _xValues);
+            }
             if (_dataFunc == null)
-                _random.MakeData(_values, out _dataPlot, out _dataFunc, 0.0, 1.0);
+                _random.MakeData(_xValues, out _dataPlot, out _dataFunc, 0.0, 1.5);
             return _dataFunc;
         }
 

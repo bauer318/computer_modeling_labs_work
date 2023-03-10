@@ -17,7 +17,7 @@ namespace ComputerModelling.Kolmogorov
         {
             if (parXi < 0 || parXi >= 1.5)
             {
-                throw new ArgumentOutOfRangeException("x out of range [0;,0.5)");
+                throw new ArgumentOutOfRangeException("x out of range [0;1.5)");
             }
             if (parXi < 0.5)
             {
