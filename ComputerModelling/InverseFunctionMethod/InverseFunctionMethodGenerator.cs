@@ -9,20 +9,7 @@ namespace ComputerModelling.InverseFunctionMethod
     public class InverseFunctionMethodGenerator
     {
         private readonly double[] _r;
-        private double[] _x;
-
-        public double[] X
-        {
-            get
-            {
-                return _x;
-            }
-            set
-            {
-                _x = value;
-            }
-        }
-
+        
         private InverseFunctionMethodGenerator() { }
         public InverseFunctionMethodGenerator(double[] parR)
         {
@@ -38,26 +25,5 @@ namespace ComputerModelling.InverseFunctionMethod
                 parXValuesArray[i] = 1.5 * _r[i];
             }
         }
-
-        public double GetFx(double parX)
-        {
-            if(parX<0 || parX >= 1.5)
-            {
-                throw new ArgumentOutOfRangeException("x out of range [0;,0.5)");
-            }
-            if (parX < 0.5)
-            {
-                return Math.Pow(parX, 2);
-            }
-            else if (parX < 1)
-            {
-                return 1.1 * parX - 0.3;
-            }
-            else 
-            {
-                return 0.4 * parX + 0.4;
-            }
-        }
-
     }
 }

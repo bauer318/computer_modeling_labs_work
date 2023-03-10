@@ -15,15 +15,22 @@ namespace ComputerModelling.Kolmogorov
         /// <returns>Значение теорической функции распределения</returns>
         private static double Ft(double parXi)
         {
-            if (parXi < 0.0)
+            if (parXi < 0 || parXi >= 1.5)
             {
-                return 0.0;
+                throw new ArgumentOutOfRangeException("x out of range [0;,0.5)");
             }
-            else if (parXi < 1.0)
+            if (parXi < 0.5)
             {
-                return parXi;
+                return Math.Pow(parXi, 2);
             }
-            return 1.0;
+            else if (parXi < 1)
+            {
+                return 1.1 * parXi - 0.3;
+            }
+            else
+            {
+                return 0.4 * parXi + 0.4;
+            }
         }
         /// <summary>
         /// Функция вычисления Lambda для критерия Колмогорова
