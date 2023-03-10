@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InverseFunctionMethod\InverseFunctionMethodGenerator.cs" />
     <Compile Include="Kolmogorov\KolmogorovCriteriaWorker.cs" />
     <Compile Include="Pearson\PearsonCriteriaWorker.cs" />
     <Compile Include="PokerTest\PokerTest.cs" />

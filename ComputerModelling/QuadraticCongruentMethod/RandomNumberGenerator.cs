@@ -12,7 +12,7 @@ namespace ComputerModelling.QuadraticCongruentMethod
         private const int N = 7000;
         private const int I = 12;
         //Число участков разбиения
-        public int K {get;} = 16;
+        public int K {get;} = 15;
         public int G_N { get { return N; } }
         
         private int _a;
