@@ -131,7 +131,7 @@ namespace Graphic
                 InverseFunctionMethodGenerator.GetInstance(_values).GenerateByInverseFunctionMethod(out _xValues);
             }
             if (_dataPlot == null)
-                _random.MakeData(_xValues, out _dataPlot, out _dataFunc, 0.0, 1.5);
+                _random.MakeData(_xValues, out _dataPlot, out _dataFunc, 0.0, 1.0);
             return _dataPlot;
         }
         public static double[] GetDataFunc()
@@ -142,7 +142,7 @@ namespace Graphic
                 InverseFunctionMethodGenerator.GetInstance(_values).GenerateByInverseFunctionMethod(out _xValues);
             }
             if (_dataFunc == null)
-                _random.MakeData(_xValues, out _dataPlot, out _dataFunc, 0.0, 1.5);
+                _random.MakeData(_xValues, out _dataPlot, out _dataFunc, 0.0, 1.0);
             return _dataFunc;
         }
 
