@@ -127,11 +127,11 @@ namespace Graphic
         {
             if (_values == null)
             {
-                _random.GeneratorData(out _values);
-                InverseFunctionMethodGenerator.GetInstance(_values).GenerateByInverseFunctionMethod(out _xValues);
+                _random.GeneratorData(out _values); 
+               InverseFunctionMethodGenerator.GetInstance(_values).GenerateByInverseFunctionMethod(out _xValues);
             }
             if (_dataPlot == null)
-                _random.MakeData(_xValues, out _dataPlot, out _dataFunc, 0.0, 1.0);
+                _random.MakeData(_xValues, out _dataPlot, out _dataFunc, 0.0, 1.5);
             return _dataPlot;
         }
         public static double[] GetDataFunc()
@@ -142,7 +142,7 @@ namespace Graphic
                 InverseFunctionMethodGenerator.GetInstance(_values).GenerateByInverseFunctionMethod(out _xValues);
             }
             if (_dataFunc == null)
-                _random.MakeData(_xValues, out _dataPlot, out _dataFunc, 0.0, 1.0);
+                _random.MakeData(_xValues, out _dataPlot, out _dataFunc, 0.0, 1.5);
             return _dataFunc;
         }
 
