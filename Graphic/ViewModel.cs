@@ -2,6 +2,7 @@
 using ComputerModelling.InverseFunctionMethod;
 using ComputerModelling.Kolmogorov;
 using ComputerModelling.QuadraticCongruentMethod;
+using ComputerModelling.WeibullDistribution;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -118,10 +119,11 @@ namespace Graphic
 
         public ViewModel()
         {
-            GammeDistributionGenerator.CalculateDxMx(out _dX, out _mX, 1, 2);
+            //GammeDistributionGenerator.CalculateDxMx(out _dX, out _mX, 1, 2);
+            WeibullDistributionGenerator.CalculateDxMx(out _dX, out _mX, 1, 2);
             TextDx = Math.Round(_dX,4,MidpointRounding.AwayFromZero).ToString();
             TextMx = Math.Round(_mX, 4, MidpointRounding.AwayFromZero).ToString();
-            _lambda = KolmogorovCriteriaWorker.Lambda(_xValues, _random.G_N, 1, 2);
+            _lambda = KolmogorovCriteriaWorker.LambdaWeibull(_xValues, _random.G_N, 1, 2);
             TextLambda = Math.Round(_lambda, 4, MidpointRounding.AwayFromZero).ToString();
         }
 
@@ -130,7 +132,8 @@ namespace Graphic
             if (_values == null)
             {
                 _random.GeneratorData(out _values);
-                GammeDistributionGenerator.GenerateByGammaDistribution(out _xValues, _random.G_N, 1,2);
+                //GammeDistributionGenerator.GenerateByGammaDistribution(out _xValues, _random.G_N, 1,2);
+                WeibullDistributionGenerator.GenerateByWeibullDistribution(out _xValues,_values, _random.G_N, 1, 2);
             }
             if (_dataPlot == null)
                 _random.MakeData(_xValues, out _dataPlot, out _dataFunc, _xValues.Min(), _xValues.Max());
@@ -141,7 +144,8 @@ namespace Graphic
             if (_values == null)
             {
                 _random.GeneratorData(out _values);
-                GammeDistributionGenerator.GenerateByGammaDistribution(out _xValues, _random.G_N, 1, 2);
+                //GammeDistributionGenerator.GenerateByGammaDistribution(out _xValues, _random.G_N, 1, 2);
+                WeibullDistributionGenerator.GenerateByWeibullDistribution(out _xValues, _values, _random.G_N, 1, 2);
             }
             if (_dataFunc == null)
                 _random.MakeData(_xValues, out _dataPlot, out _dataFunc, _xValues.Min(), _xValues.Max());
