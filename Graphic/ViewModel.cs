@@ -1,6 +1,6 @@
-﻿using ComputerModelling.InverseFunctionMethod;
+﻿using ComputerModelling.GammaDistribution;
+using ComputerModelling.InverseFunctionMethod;
 using ComputerModelling.Kolmogorov;
-using ComputerModelling.NormalDistribution;
 using ComputerModelling.QuadraticCongruentMethod;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
@@ -118,10 +118,10 @@ namespace Graphic
 
         public ViewModel()
         {
-            _random.Estimate(_xValues, out _mX, out _dX);
+            GammeDistributionGenerator.CalculateDxMx(out _dX, out _mX, 1, 2);
             TextDx = Math.Round(_dX,4,MidpointRounding.AwayFromZero).ToString();
             TextMx = Math.Round(_mX, 4, MidpointRounding.AwayFromZero).ToString();
-            _lambda = KolmogorovCriteriaWorker.Lambda(_xValues, _random.G_N, _random.GetM, _random.GetD);
+            _lambda = KolmogorovCriteriaWorker.Lambda(_xValues, _random.G_N, 1, 2);
             TextLambda = Math.Round(_lambda, 4, MidpointRounding.AwayFromZero).ToString();
         }
 
@@ -130,8 +130,7 @@ namespace Graphic
             if (_values == null)
             {
                 _random.GeneratorData(out _values);
-                //ApproximationMethodGenerator.GenerateByApproximationMethod(out _xValues, _random.G_N, _random.GetM, _random.GetD);
-                CentralLimitTheoremGenerator.GenerateByCentralLimitTheorem(out _xValues, _random.G_N, _random.GetM, _random.GetD);
+                GammeDistributionGenerator.GenerateByGammaDistribution(out _xValues, _random.G_N, 1,2);
             }
             if (_dataPlot == null)
                 _random.MakeData(_xValues, out _dataPlot, out _dataFunc, _xValues.Min(), _xValues.Max());
@@ -142,8 +141,7 @@ namespace Graphic
             if (_values == null)
             {
                 _random.GeneratorData(out _values);
-                //ApproximationMethodGenerator.GenerateByApproximationMethod(out _xValues, _random.G_N, _random.GetM, _random.GetD);
-                CentralLimitTheoremGenerator.GenerateByCentralLimitTheorem(out _xValues, _random.G_N, _random.GetM, _random.GetD);
+                GammeDistributionGenerator.GenerateByGammaDistribution(out _xValues, _random.G_N, 1, 2);
             }
             if (_dataFunc == null)
                 _random.MakeData(_xValues, out _dataPlot, out _dataFunc, _xValues.Min(), _xValues.Max());
