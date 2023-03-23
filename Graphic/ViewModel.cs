@@ -1,5 +1,6 @@
 ﻿using ComputerModelling.InverseFunctionMethod;
 using ComputerModelling.Kolmogorov;
+using ComputerModelling.NormalDistribution;
 using ComputerModelling.QuadraticCongruentMethod;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
@@ -8,6 +9,7 @@ using LiveChartsCore.SkiaSharpView.VisualElements;
 using SkiaSharp;
 using System;
 using System.Globalization;
+using System.Linq;
 
 namespace Graphic
 {
@@ -20,7 +22,7 @@ namespace Graphic
         private static double[] _values;
 
         /// <summary>
-        /// массив случайных значений по заданному распределению на [0;1.5)
+        /// массив случайных значений по нормальному распределению N(3.5,0.9)
         /// </summary>
         private static double[] _xValues;
 
@@ -93,7 +95,7 @@ namespace Graphic
             {
                 Name = "Pi",
                 MinLimit = 0,
-                MaxLimit = 0.1
+                MaxLimit = 0.3
             }
          };
         public Axis[] XAxes { get; set; } = new Axis[]
@@ -119,7 +121,7 @@ namespace Graphic
             _random.Estimate(_xValues, out _mX, out _dX);
             TextDx = Math.Round(_dX,4,MidpointRounding.AwayFromZero).ToString();
             TextMx = Math.Round(_mX, 4, MidpointRounding.AwayFromZero).ToString();
-            _lambda = KolmogorovCriteriaWorker.Lambda(_xValues, _random.G_N);
+            _lambda = KolmogorovCriteriaWorker.Lambda(_xValues, _random.G_N, _random.GetM, _random.GetD);
             TextLambda = Math.Round(_lambda, 4, MidpointRounding.AwayFromZero).ToString();
         }
 
@@ -128,10 +130,10 @@ namespace Graphic
             if (_values == null)
             {
                 _random.GeneratorData(out _values);
-                InverseFunctionMethodGenerator.GetInstance(_values).GenerateByInverseFunctionMethod(out _xValues);
+                ApproximationMethodGenerator.GenerateByApproximationMethod(out _xValues, _random.G_N, _random.GetM, _random.GetD);
             }
             if (_dataPlot == null)
-                _random.MakeData(_xValues, out _dataPlot, out _dataFunc, 0.0, 1.0);
+                _random.MakeData(_xValues, out _dataPlot, out _dataFunc, _xValues.Min(), _xValues.Max());
             return _dataPlot;
         }
         public static double[] GetDataFunc()
@@ -139,10 +141,10 @@ namespace Graphic
             if (_values == null)
             {
                 _random.GeneratorData(out _values);
-                InverseFunctionMethodGenerator.GetInstance(_values).GenerateByInverseFunctionMethod(out _xValues);
+                ApproximationMethodGenerator.GenerateByApproximationMethod(out _xValues, _random.G_N, _random.GetM, _random.GetD);
             }
             if (_dataFunc == null)
-                _random.MakeData(_xValues, out _dataPlot, out _dataFunc, 0.0, 1.0);
+                _random.MakeData(_xValues, out _dataPlot, out _dataFunc, _xValues.Min(), _xValues.Max());
             return _dataFunc;
         }
 

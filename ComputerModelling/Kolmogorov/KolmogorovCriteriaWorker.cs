@@ -13,24 +13,10 @@ namespace ComputerModelling.Kolmogorov
         /// </summary>
         /// <param name="parXi">Случайное величиние</param>
         /// <returns>Значение теорической функции распределения</returns>
-        private static double Ft(double parXi)
+        private static double Ft(double parXi,double parM, double parSquareD)
         {
-            if (parXi < 0 || parXi >= 1.5)
-            {
-                throw new ArgumentOutOfRangeException("x out of range [0;1.5)");
-            }
-            if (parXi < 0.5)
-            {
-                return Math.Pow(parXi, 2);
-            }
-            else if (parXi < 1)
-            {
-                return 1.1 * parXi - 0.3;
-            }
-            else
-            {
-                return 0.4 * parXi + 0.4;
-            }
+            double d = Math.Sqrt(parSquareD);
+            return (1 / (d * Math.Sqrt(2 * Math.PI))) * Math.Pow(Math.E, -(Math.Pow(parXi - parM, 2) / (2 * parSquareD)));
         }
         /// <summary>
         /// Функция вычисления Lambda для критерия Колмогорова
@@ -38,19 +24,19 @@ namespace ComputerModelling.Kolmogorov
         /// <param name="parValues">Отсортирванная в порядке возврастания выборка</param>
         /// <param name="parN">Объем выборки</param>
         /// <returns>Вычисленное значение Lambda</returns>
-        public static double Lambda(double[] parValues,int parN)
+        public static double Lambda(double[] parValues,int parN, double parM, double parSquareD)
         {
             double[] sortedArray = (double[])parValues.Clone();
+            
             Array.Sort(sortedArray);
-            double dMax = 0.0;
+            double[] dp = new double[parN];
+            double[] dm = new double[parN];
             for(int i=0; i < parN; i++)
             {
-                double dp = Math.Abs((double)(i + 1) / parN - Ft(sortedArray[i]));
-                double dm = Math.Abs(Ft(sortedArray[i]) - (double)i / parN);
-                if (dp > dMax) dMax = dp;
-                if (dm > dMax) dMax = dm;
+                dp[i] = i / parN - Ft(sortedArray[i], parM, parSquareD);
+                dm[i] = Ft(sortedArray[i], parM, parSquareD) - (i - 1) / parN;
             }
-            return dMax*Math.Sqrt(parN);
+            return Math.Max(dp.Max(), dm.Max());
         }
     }
 }

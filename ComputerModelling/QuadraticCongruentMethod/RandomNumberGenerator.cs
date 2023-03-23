@@ -11,9 +11,19 @@ namespace ComputerModelling.QuadraticCongruentMethod
         //Объем выборки
         private const int N = 7000;
         private const int I = 12;
+
+        //Square sigma
+        private const double Square_D = 0.9;
+
+        //Mu
+        private const double M = 3.5;
         //Число участков разбиения
         public int K {get;} = 15;
         public int G_N { get { return N; } }
+
+        public double GetD { get { return Square_D; } }
+
+        public double GetM { get { return M; } }
         
         private int _a;
         private int _b;
