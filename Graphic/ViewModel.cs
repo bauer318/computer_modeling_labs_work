@@ -130,7 +130,8 @@ namespace Graphic
             if (_values == null)
             {
                 _random.GeneratorData(out _values);
-                ApproximationMethodGenerator.GenerateByApproximationMethod(out _xValues, _random.G_N, _random.GetM, _random.GetD);
+                //ApproximationMethodGenerator.GenerateByApproximationMethod(out _xValues, _random.G_N, _random.GetM, _random.GetD);
+                CentralLimitTheoremGenerator.GenerateByCentralLimitTheorem(out _xValues, _random.G_N, _random.GetM, _random.GetD);
             }
             if (_dataPlot == null)
                 _random.MakeData(_xValues, out _dataPlot, out _dataFunc, _xValues.Min(), _xValues.Max());
@@ -141,7 +142,8 @@ namespace Graphic
             if (_values == null)
             {
                 _random.GeneratorData(out _values);
-                ApproximationMethodGenerator.GenerateByApproximationMethod(out _xValues, _random.G_N, _random.GetM, _random.GetD);
+                //ApproximationMethodGenerator.GenerateByApproximationMethod(out _xValues, _random.G_N, _random.GetM, _random.GetD);
+                CentralLimitTheoremGenerator.GenerateByCentralLimitTheorem(out _xValues, _random.G_N, _random.GetM, _random.GetD);
             }
             if (_dataFunc == null)
                 _random.MakeData(_xValues, out _dataPlot, out _dataFunc, _xValues.Min(), _xValues.Max());
