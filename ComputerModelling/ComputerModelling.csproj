@@ -41,12 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GammaDistribution\GammeDistributionGenerator.cs" />
-    <Compile Include="InverseFunctionMethod\InverseFunctionMethodGenerator.cs" />
-    <Compile Include="Kolmogorov\KolmogorovCriteriaWorker.cs" />
+    <Compile Include="MonteCarlo\MonteCarloWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuadraticCongruentMethod\RandomNumberGenerator.cs" />
-    <Compile Include="WeibullDistribution\WeibullDistributionGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
