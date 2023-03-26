@@ -17,56 +17,36 @@ namespace ConsoleOutput
             double pD = 1 - Math.Pow(1 - p1, 2) * Math.Pow(1 - p2, 2);
             double pE = 2 * p1 * (1 - p1);
             double pF = Math.Pow(1 - p1, 2) * (1 - Math.Pow(1 - p2, 2)) + 2 * p1 * (1 - p1) * (1 - p2);
-            
-            int n = 20;
+            Random random = new Random();
+            int n = 100;
             int nA = 0, nB = 0, nC = 0, nD = 0, nE = 0, nF = 0;
             double r;
             for(int i=0; i < n; i++)
             {
-                r = randomNumberGenerator.NextDouble();
+                r = random.NextDouble();
                 if (r < pA)
                 {
                     nA++;
                 }
-                else
+                else if(r<(pA+pB))
                 {
-                    r = randomNumberGenerator.NextDouble();
-                    if (r < pB)
-                    {
-                        nB++;
-                    }
-                    else
-                    {
-                        r = randomNumberGenerator.NextDouble();
-                        if (r < pC)
-                        {
-                            nC++;
-                        }
-                        else
-                        {
-                            r = randomNumberGenerator.NextDouble();
-                            if (r < pD)
-                            {
-                                nD++;
-                            }
-                            else
-                            {
-                                r = randomNumberGenerator.NextDouble();
-                                if (r < pE)
-                                {
-                                    nE++;
-                                }
-                                else
-                                {
-                                    r = randomNumberGenerator.NextDouble();
-                                    if (r < pF)
-                                    {
-                                        nF++;
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    nB++;
+                }
+                else if (r < (pA+pB+pC))
+                {
+                    nC++;
+                }
+                else if (r < (pA + pB + pC+pD))
+                {
+                    nD++;
+                }
+                else if (r < (pA + pB + pC + pD+pE))
+                {
+                    nE++;
+                }
+                else if (r < (pA + pB + pC + pD + pE + pF))
+                {
+                    nF++;
                 }
                 
                 
