@@ -22,9 +22,9 @@ namespace ComputerModelling.MonteCarlo
             return 1 - Math.Pow(1 - parP1, 2) * Math.Pow(1 - parP2, 2);
         }
 
-        private static double GetPE(double parP1, double parP2)
+        private static double GetPE(double parP1)
         {
-            return 2 * parP1 * (1 - parP2);
+            return 2 * parP1 * (1 - parP1);
         }
 
         private static double GetPF(double parP1, double parP2)
@@ -72,7 +72,6 @@ namespace ComputerModelling.MonteCarlo
                 else if (n == 1)
                 {
                     nE++;
-                    nC++;
                     nD++;
                     r = randomNumberGenerator.NextDouble();
                     if (r < parP2)
@@ -96,6 +95,18 @@ namespace ComputerModelling.MonteCarlo
                         nD++;
                         nF++;
                     }
+                    else
+                    {
+                        r = randomNumberGenerator.NextDouble();
+                        if (r < parP2)
+                        {
+                            //сбит бомбардировщик
+                            nA++;
+                            nD++;
+                            nF++;
+                        }
+                    }
+
                 }
 
             }
@@ -116,7 +127,7 @@ namespace ComputerModelling.MonteCarlo
             result[1] = GetPB(parP1);
             result[2] = GetPC(parP1);
             result[3] = GetPD(parP1, parP2);
-            result[4] = GetPE(parP1, parP2);
+            result[4] = GetPE(parP1);
             result[5] = GetPF(parP1, parP2);
             return result;
         }

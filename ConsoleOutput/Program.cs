@@ -9,7 +9,7 @@ namespace ConsoleOutput
         {
             double p1 = 0.3; 
             double p2 = 0.5;
-            int n = 20;
+            int n = 1000000;
             double[] result = MonteCarloWorker.GetProbabilitiesArray(n, p1, p2);
             double[] thericalResult = MonteCarloWorker.GetTheoriticalsProbabilitiesArray(p1, p2);
             string[] eventTexts = { "A", "B", "C", "D", "E", "F" };
