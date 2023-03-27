@@ -1,9 +1,5 @@
 ﻿using ComputerModelling.QuadraticCongruentMethod;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ComputerModelling.MonteCarlo
 {
@@ -28,7 +24,7 @@ namespace ComputerModelling.MonteCarlo
 
         private static double GetPE(double parP1, double parP2)
         {
-          return 2 * parP1 * (1 - parP2);
+            return 2 * parP1 * (1 - parP2);
         }
 
         private static double GetPF(double parP1, double parP2)
@@ -40,12 +36,6 @@ namespace ComputerModelling.MonteCarlo
         {
             RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator(6, 7, 3, 4001);
             double[] result = new double[6];
-            double pA = GetPA(parP1, parP2);
-            double pB = GetPB(parP1);
-            double pC = GetPC(parP1);
-            double pD = GetPD(parP1, parP2);
-            double pE = GetPE(parP1, parP2);
-            double pF = GetPF(parP1, parP2);
             double r;
             double nA = 0;
             double nB = 0;
@@ -53,60 +43,60 @@ namespace ComputerModelling.MonteCarlo
             double nD = 0;
             double nE = 0;
             double nF = 0;
+            int n;
             for (int i = 0; i < parN; i++)
             {
+                n = 2;
                 r = randomNumberGenerator.NextDouble();
-                //Сбит бомбардировщик
-                if (r < pA)
+                if (r < parP1)
                 {
-                    nA++;
+                    //Сбит истребитель
+                    n--;
+                    
                 }
-                else
+                r = randomNumberGenerator.NextDouble();
+                if (r < parP1)
                 {
+                    //Сбит истребитель
+                    n--;
+                   
+                }
+                //сбит оба истребителя
+                if (n == 0)
+                {
+                    nB++;
+                    nD++;
+                    nC++;
+                }
+                //сбит ровно один истребитель
+                else if (n == 1)
+                {
+                    nE++;
+                    nC++;
+                    nD++;
                     r = randomNumberGenerator.NextDouble();
-                    //Сбиты оба истребителя
-                    if (r < pB)
+                    if (r < parP2)
                     {
-                        nB++;
+                        //сбит бомбардировщик
+                        nA++;
                     }
                     else
                     {
-                        r = randomNumberGenerator.NextDouble();
-                        //Сбит хотя бы один истребитель
-                        if (r < pC)
-                        {
-                            nC++;
-                        }
-                        else
-                        {
-                            r = randomNumberGenerator.NextDouble();
-                            //Сбит хотя бы один самолет
-                            if (r < pD)
-                            {
-                                nD++;
-                            }
-                            else
-                            {
-                                r = randomNumberGenerator.NextDouble();
-                                //Сбит ровно один истребитель
-                                if (r < pE)
-                                {
-                                    nE++;
-                                }
-                                else
-                                {
-                                    r = randomNumberGenerator.NextDouble();
-                                    //сбит ровно один самолет
-                                    if (r < pF)
-                                    {
-                                        nF++;
-                                    }
-                                }
-                            }
-                        }
+                        //сбит ровно один самолет
+                        nF++;
                     }
                 }
-
+                else //n=2
+                {
+                    r = randomNumberGenerator.NextDouble();
+                    if (r < parP2)
+                    {
+                        //сбит бомбардировщик
+                        nA++;
+                        nD++;
+                        nF++;
+                    }
+                }
 
             }
             result[0] = (double)nA / parN;
@@ -115,7 +105,7 @@ namespace ComputerModelling.MonteCarlo
             result[3] = (double)nD / parN;
             result[4] = (double)nE / parN;
             result[5] = (double)nF / parN;
-            
+
             return result;
         }
 
@@ -131,6 +121,6 @@ namespace ComputerModelling.MonteCarlo
             return result;
         }
 
-         
+
     }
 }
