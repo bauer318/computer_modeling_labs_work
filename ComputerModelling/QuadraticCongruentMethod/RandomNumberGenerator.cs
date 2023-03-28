@@ -53,7 +53,7 @@ namespace ComputerModelling.QuadraticCongruentMethod
         /// Генератор случайных чисел
         /// </summary>
         /// <returns>случайно число</returns>
-        private double Rnd()
+        public double NextDouble()
         {
             _y = (_a * _y * _y + _b * _y + _c) % _m;
             return (double)_y / _m;
@@ -67,7 +67,7 @@ namespace ComputerModelling.QuadraticCongruentMethod
             outValues = new double[N];
             for(int i=0; i<N; i++)
             {
-                outValues[i] = Rnd();
+                outValues[i] = NextDouble();
             }
         }
         /// <summary>

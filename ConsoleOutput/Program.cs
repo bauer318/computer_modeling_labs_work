@@ -1,5 +1,6 @@
 ﻿using ComputerModelling.InverseFunctionMethod;
 using ComputerModelling.Kolmogorov;
+using ComputerModelling.OneDimensionalLattice;
 using ComputerModelling.QuadraticCongruentMethod;
 
 namespace ConsoleOutput
@@ -9,14 +10,13 @@ namespace ConsoleOutput
         static void Main(string[] args)
         {
             RandomNumberGenerator random = new RandomNumberGenerator(6, 7, 3, 4001);
-            double[] values;
-            random.GeneratorData(out values);
+            OneDimensionalLatticeWorker one = new OneDimensionalLatticeWorker(random, 0, 7, 3, 0.4);
+            for(int i=0; i < 10; i++)
+            {
+                Console.WriteLine(one.GetTime());
+            }
            
-            
-            //random.MakeData(values, out dataPlot, out dataFunc, 0.0, 1.0);
-            
-            
-            Console.Read();
+            Console.ReadLine();
         }
     }
 }
