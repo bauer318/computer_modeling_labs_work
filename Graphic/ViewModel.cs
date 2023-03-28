@@ -1,16 +1,11 @@
-﻿using ComputerModelling.GammaDistribution;
-using ComputerModelling.InverseFunctionMethod;
-using ComputerModelling.Kolmogorov;
-using ComputerModelling.OneDimensionalLattice;
+﻿using ComputerModelling.OneDimensionalLattice;
 using ComputerModelling.QuadraticCongruentMethod;
-using ComputerModelling.WeibullDistribution;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.VisualElements;
 using SkiaSharp;
 using System;
-using System.Globalization;
 using System.Linq;
 
 namespace Graphic
