@@ -1,9 +1,5 @@
 ﻿using ComputerModelling.QuadraticCongruentMethod;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ComputerModelling.OneDimensionalLattice
 {
@@ -14,7 +10,7 @@ namespace ComputerModelling.OneDimensionalLattice
         private int _x2;
         private int _x0;
         private double _p;
-        public OneDimensionalLatticeWorker(RandomNumberGenerator parRandom,int parX1, int parX2, int parX0, double parP) 
+        public OneDimensionalLatticeWorker(RandomNumberGenerator parRandom, int parX1, int parX2, int parX0, double parP)
         {
             _random = parRandom;
             _x1 = parX1;
@@ -24,7 +20,7 @@ namespace ComputerModelling.OneDimensionalLattice
 
         }
 
-        public int GetTime()
+        private int GetTime()
         {
             int t = 0;
             int n = 0;
@@ -40,7 +36,16 @@ namespace ComputerModelling.OneDimensionalLattice
                 t++;
             }
             return t;
-            
+        }
+
+        public double[] GetValues(int parN)
+        {
+            double[] values = new double[parN];
+            for (int i = 0; i < parN; i++)
+            {
+                values[i] = GetTime();
+            }
+            return values;
         }
 
         private int GetNearestSide()

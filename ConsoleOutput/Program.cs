@@ -11,11 +11,7 @@ namespace ConsoleOutput
         {
             RandomNumberGenerator random = new RandomNumberGenerator(6, 7, 3, 4001);
             OneDimensionalLatticeWorker one = new OneDimensionalLatticeWorker(random, 0, 7, 3, 0.4);
-            for(int i=0; i < 10; i++)
-            {
-                Console.WriteLine(one.GetTime());
-            }
-           
+            double[] values = one.GetValues(20);
             Console.ReadLine();
         }
     }
