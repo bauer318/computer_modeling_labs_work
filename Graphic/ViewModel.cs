@@ -18,17 +18,12 @@ namespace Graphic
     public class ViewModel
     {
         private static readonly RandomNumberGenerator _random = new RandomNumberGenerator(6, 7, 3, 4001);
-        private static readonly OneDimensionalLatticeWorker one = new OneDimensionalLatticeWorker(_random, 0, 7, 3, 0.4);
+        private static readonly OneDimensionalLatticeWorker one = new OneDimensionalLatticeWorker(_random, 0, 10, 3, 0.6);
         
         /// <summary>
-        /// массив случайных значений равномерного распределения на [0;1)
+        /// массив 
         /// </summary>
         private static double[] _values;
-
-        /// <summary>
-        /// массив случайных значений по нормальному распределению N(3.5,0.9)
-        /// </summary>
-        private static double[] _xValues;
 
         /// <summary>
         /// данные гистрограммы
@@ -49,7 +44,6 @@ namespace Graphic
 
         public int N { get; private set; }
 
-        private readonly double _lambda;
         public string TextDx { get; private set; }
         public string TextMx { get; private set; }
         public string TextLambda { get; private set; }
@@ -122,12 +116,10 @@ namespace Graphic
 
         public ViewModel()
         {
-            //GammeDistributionGenerator.CalculateDxMx(out _dX, out _mX, 1, 2);
-            //WeibullDistributionGenerator.CalculateDxMx(out _dX, out _mX, 1, 2);
+            _random.Estimate(_values, out _mX, out _dX);
             TextDx = Math.Round(_dX,4,MidpointRounding.AwayFromZero).ToString();
             TextMx = Math.Round(_mX, 4, MidpointRounding.AwayFromZero).ToString();
-            //_lambda = KolmogorovCriteriaWorker.LambdaWeibull(_xValues, _random.G_N, 1, 2);
-            TextLambda = Math.Round(_lambda, 4, MidpointRounding.AwayFromZero).ToString();
+       
         }
 
         public static double[] GetDataPlot()
@@ -135,9 +127,6 @@ namespace Graphic
             if (_values == null)
             {
                 _values = one.GetValues(_random.G_N);
-                //_random.GeneratorData(out _values);
-                //GammeDistributionGenerator.GenerateByGammaDistribution(out _xValues, _random.G_N, 1,2);
-                //WeibullDistributionGenerator.GenerateByWeibullDistribution(out _xValues,_values, _random.G_N, 1, 2);
             }
             if (_dataPlot == null)
                 _random.MakeData(_values, out _dataPlot, out _dataFunc, _values.Min(), _values.Max());
@@ -148,9 +137,6 @@ namespace Graphic
             if (_values == null)
             {
                 _values = one.GetValues(_random.G_N);
-                //_random.GeneratorData(out _values);
-                //GammeDistributionGenerator.GenerateByGammaDistribution(out _xValues, _random.G_N, 1, 2);
-                //WeibullDistributionGenerator.GenerateByWeibullDistribution(out _xValues, _values, _random.G_N, 1, 2);
             }
             if (_dataFunc == null)
                 _random.MakeData(_values, out _dataPlot, out _dataFunc, _values.Min(), _values.Max());

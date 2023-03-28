@@ -10,7 +10,7 @@ namespace ConsoleOutput
         static void Main(string[] args)
         {
             RandomNumberGenerator random = new RandomNumberGenerator(6, 7, 3, 4001);
-            OneDimensionalLatticeWorker one = new OneDimensionalLatticeWorker(random, 0, 7, 3, 0.4);
+            OneDimensionalLatticeWorker one = new OneDimensionalLatticeWorker(random, 0, 10, 3, 0.6);
             double[] values = one.GetValues(20);
             Console.ReadLine();
         }

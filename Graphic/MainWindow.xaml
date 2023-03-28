@@ -41,8 +41,6 @@
             <TextBlock Text="{Binding TextMx}" Grid.Column="1" VerticalAlignment="Center"></TextBlock>
             <Label Content="D(x)= " Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
             <TextBlock Text="{Binding TextDx}" Grid.Column="3" VerticalAlignment="Center"></TextBlock>
-            <Label Content="λ= " Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
-            <TextBlock Text="{Binding TextLambda}" Grid.Column="5" VerticalAlignment="Center"></TextBlock>
         </Grid>
     </Grid>
 </Window>
