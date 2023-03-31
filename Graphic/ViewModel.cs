@@ -13,7 +13,7 @@ namespace Graphic
     public class ViewModel
     {
         private static readonly RandomNumberGenerator _random = new RandomNumberGenerator(6, 7, 3, 4001);
-        private static readonly OneDimensionalLatticeWorker one = new OneDimensionalLatticeWorker(_random, 0, 10, 3, 0.5);
+        private static readonly OneDimensionalLatticeWorker one = new OneDimensionalLatticeWorker(_random, 0, 30, 2, 0.7);
         
         /// <summary>
         /// массив 

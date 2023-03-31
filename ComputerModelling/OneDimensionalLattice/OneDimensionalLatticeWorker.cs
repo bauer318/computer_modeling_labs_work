@@ -6,6 +6,7 @@ namespace ComputerModelling.OneDimensionalLattice
     public class OneDimensionalLatticeWorker
     {
         private RandomNumberGenerator _random;
+        private Random random = new Random();
         private int _x1;
         private int _x2;
         private int _x0;
@@ -27,7 +28,7 @@ namespace ComputerModelling.OneDimensionalLattice
             int time = 0;
             while((x!=_x1) && (x != _x2))
             {
-                double r = _random.NextDouble();
+                double r = random.NextDouble();
                 if (r < _p)
                 {
                     x++;
