@@ -20,22 +20,26 @@ namespace ComputerModelling.OneDimensionalLattice
 
         }
 
-        private int GetTime()
+        private double GetTime()
         {
-            int t = 0;
-            int n = 0;
-            int nearestSide = GetNearestSide();
-            double r;
-            while (n < nearestSide)
+            double x = _x0;
+            double T = 0;
+            int time = 0;
+            while((x!=_x1) && (x != _x2))
             {
-                r = _random.NextDouble();
+                double r = _random.NextDouble();
                 if (r < _p)
                 {
-                    n++;
+                    x++;
                 }
-                t++;
+                else
+                {
+                    x--;
+                }
+                time++;
             }
-            return t;
+            T += time;
+            return T / 1.0;
         }
 
         public double[] GetValues(int parN)
