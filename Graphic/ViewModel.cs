@@ -13,7 +13,7 @@ namespace Graphic
     public class ViewModel
     {
         private static readonly RandomNumberGenerator _random = new RandomNumberGenerator(6, 7, 3, 4001);
-        private static readonly OneDimensionalLatticeWorker one = new OneDimensionalLatticeWorker(_random, 0, 30, 2, 0.7);
+        private static readonly OneDimensionalLatticeWorker one = new OneDimensionalLatticeWorker(_random, 0, 30, 5, 0.8);
         
         /// <summary>
         /// массив 
@@ -32,6 +32,9 @@ namespace Graphic
         /// Дисперсия
         /// </summary>
         private static double _dX;
+
+        private static double _n1;
+        private static double _n2;
         /// <summary>
         /// математическое ожидание
         /// </summary>
@@ -42,6 +45,10 @@ namespace Graphic
         public string TextDx { get; private set; }
         public string TextMx { get; private set; }
         public string TextLambda { get; private set; }
+
+        public  string TextFirstN { get; private set; }
+
+        public  string TextSecondN { get; private set; }
         public ISeries[] Series { get; set; } =
         {
 
@@ -114,7 +121,10 @@ namespace Graphic
             _random.Estimate(_values, out _mX, out _dX);
             TextDx = Math.Round(_dX,4,MidpointRounding.AwayFromZero).ToString();
             TextMx = Math.Round(_mX, 4, MidpointRounding.AwayFromZero).ToString();
-       
+            one.GetFirstN(out _n1, _dX);
+            one.GetSecondN(out _n2, _dX);
+            TextFirstN = Math.Round(_n1, 2, MidpointRounding.AwayFromZero).ToString();
+            TextSecondN = Math.Round(_n2, 2, MidpointRounding.AwayFromZero).ToString();
         }
 
         public static double[] GetDataPlot()
@@ -125,6 +135,7 @@ namespace Graphic
             }
             if (_dataPlot == null)
                 _random.MakeData(_values, out _dataPlot, out _dataFunc, _values.Min(), _values.Max());
+                
             return _dataPlot;
         }
         public static double[] GetDataFunc()

@@ -30,17 +30,15 @@
                 />
         <Grid Grid.Row="2" Background="DarkGray">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            <Label Content="M(x)= " Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
-            <TextBlock Text="{Binding TextMx}" Grid.Column="1" VerticalAlignment="Center"></TextBlock>
-            <Label Content="D(x)= " Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
-            <TextBlock Text="{Binding TextDx}" Grid.Column="3" VerticalAlignment="Center"></TextBlock>
+            <Label Content="Оценка среднего параметра, N=" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
+            <TextBlock Text="{Binding TextFirstN}" Grid.Column="1" VerticalAlignment="Center"></TextBlock>
+            <Label Content="Оценка выборочной дисперсии параметра, N = " Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
+            <TextBlock Text="{Binding TextSecondN}" Grid.Column="3" VerticalAlignment="Center"></TextBlock>
         </Grid>
     </Grid>
 </Window>
