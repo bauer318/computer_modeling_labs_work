@@ -45,6 +45,7 @@
     <Compile Include="QuadraticCongruentMethod\RandomNumberGenerator.cs" />
     <Compile Include="QueuingSystem\ExponentialDistribution.cs" />
     <Compile Include="QueuingSystem\MultichanelQueuingSystemWithoutLimit.cs" />
+    <Compile Include="QueuingSystem\PoissonDistribution.cs" />
     <Compile Include="QueuingSystem\QueuingSystemModeling.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

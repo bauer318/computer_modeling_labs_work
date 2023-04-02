@@ -5,19 +5,22 @@ namespace ComputerModelling.QueuingSystem
 {
     public class QueuingSystemModeling
     {
-        private ExponentialDistribution _arrivalTimeGeneraor;
+        private PoissonDistribution _poisson;
         private ExponentialDistribution _serviceTimeGeneration;
         private RandomNumberGenerator _random;
         private double _lambda;
         private double _mu;
+        private int _zMax;
+        private double _modelTime;
 
-
-        public QueuingSystemModeling(double parLamdba, double parMu, RandomNumberGenerator parRandom)
+        public QueuingSystemModeling(double parLamdba, double parMu, RandomNumberGenerator parRandom, int zMax, double modelTime)
         {
             _lambda = parLamdba;
             _mu = parMu;
-            _arrivalTimeGeneraor = new ExponentialDistribution(_lambda, parRandom);
             _serviceTimeGeneration = new ExponentialDistribution(_mu, parRandom);
+            _zMax = zMax;
+            _modelTime = modelTime;
+            _poisson = new PoissonDistribution(_lambda, _zMax, parRandom);
         }
         private double[] InitArray(int parN)
         {
@@ -28,24 +31,26 @@ namespace ComputerModelling.QueuingSystem
             }
             return result;
         }
-        public void Execute(int parZMax, double parModelTime)
+        public void Execute()
         {
-            double[] z_arrive = InitArray(parZMax);
-            double[] z_serve = InitArray(parZMax);
+            double[] z_arrive = InitArray(_zMax);
+            double[] z_serve = InitArray(_zMax);
             double timeServe = 0;
             double timeEnd = 0;
+            double[] arrivalTime = _poisson.GetValues();
+            //_poisson.SortValues(out arrivalTime, _poisson.GetValues());
             //Обнуляем модельное время
             double time = 0;
             //Обнуляем счетчик поступивших заявок
             int Nin = 0;
 
             //Формируем входяшие заяки
-            for (int i = 0; i < parZMax; i++)
+            for (int i = 0; i < _zMax; i++)
             {
                 //формируем время поступления очередной заявки
-                time += _arrivalTimeGeneraor.NextDouble();
+                time += arrivalTime[i];
                 //Если время моделирования не закончено
-                if (time < parModelTime)
+                if (time < _modelTime)
                 {
                     //То увеличить количество поступивших заявок
                     Nin++;
@@ -71,7 +76,7 @@ namespace ComputerModelling.QueuingSystem
             double timeWait = 0;
             //
             double timeSys = 0;
-            //
+            //время работы системы
             double timeWork = 0;
             double[] z_begin = InitArray(Nin);
             double[] z_end = InitArray(Nin);
@@ -98,7 +103,7 @@ namespace ComputerModelling.QueuingSystem
                     timeServe = z_arrive[i];
                 }
                 //если время не закончилось
-                if (timeServe < parModelTime)
+                if (timeServe < _modelTime)
                 {
                     //то запоминаем время начала обслуживания заявки
                     z_begin[i] = timeServe;
@@ -123,11 +128,15 @@ namespace ComputerModelling.QueuingSystem
                     break;
                 }
             }
+            double tOch = (double)timeWait / Nserve;
+            double coeffQS = (double)timeWork / timeEnd;
+            double lost = tOch * 30 + coeffQS * 15;
             Console.WriteLine("Число поступивших заявок " + Nin);
             Console.WriteLine("Число обслуженных заявок " + Nserve);
-            Console.WriteLine("Среднее время ожидания в очереди {0:f4} ", (double)timeWait / Nserve);
+            Console.WriteLine("Среднее время ожидания в очереди {0:f4} ", tOch);
             Console.WriteLine("Среднее время пребывания в системе {0:f4} ", (double)timeSys / Nserve);
-            Console.WriteLine("Коэффициент использования СМО {0:f4} ", (double)timeWork / timeEnd);
+            Console.WriteLine("Коэффициент использования СМО {0:f4} ",coeffQS);
+            Console.WriteLine("Средние потери цеха {0:f4} д.е.", lost);
         }
 
     }

@@ -21,12 +21,12 @@ namespace ComputerModelling.QueuingSystem
             _chanels = parChanels;
         }
         
-        public double GetLoadFactor()
+        private double GetLoadFactor()
         {
             return _lamba / _mu;
         }
 
-        public double GetFreeChanelsProbability()
+        private double GetFreeChanelsProbability()
         {
             double p0 = 0.0;
             double loadFactor = GetLoadFactor();
@@ -38,7 +38,7 @@ namespace ComputerModelling.QueuingSystem
             return 1/p0;
         }
 
-        public double GetQueueProbability()
+        private double GetQueueProbability()
         {
             double p0 = GetFreeChanelsProbability();
             double loadFactor = GetLoadFactor();
@@ -46,7 +46,7 @@ namespace ComputerModelling.QueuingSystem
             return Math.Pow(loadFactor, _chanels + 1) * p0 / (GetFactorial(_chanels) * (_chanels - loadFactor));
         }
 
-        public double GetAverageNumberQueueApplications()
+        private double GetAverageNumberQueueApplications()
         {
             double p0 = GetFreeChanelsProbability();
             double loadFactor = GetLoadFactor();
@@ -54,35 +54,48 @@ namespace ComputerModelling.QueuingSystem
             return Math.Pow(loadFactor, _chanels + 1) * p0*(1/Math.Pow(1-(loadFactor/_chanels),2))/(_chanels*GetFactorial(_chanels));
         }
 
-        public double GetRelativeThroughputQueuingSystem()
+        private double GetRelativeThroughputQueuingSystem()
         {
             //Q
             return 1 - REFUSAL_APPLICATION_PROBABILITY;
         }
 
-        public double GetAbsoluteThroughputQueuingSystem()
+        private double GetAbsoluteThroughputQueuingSystem()
         {
             //A
             return _lamba * GetRelativeThroughputQueuingSystem();
         }
 
-        public double GetAverageTimeQueueApplications()
+        private double GetAverageTimeQueueApplications()
         {
             return GetAverageNumberQueueApplications() / _lamba;
         }
 
-        public double GetAverageNumberBusyChanels()
+        private double GetAverageNumberBusyChanels()
         {
             return GetAbsoluteThroughputQueuingSystem() / _mu;
         }
 
-        public int GetFactorial(int parNumber)
+        private int GetFactorial(int parNumber)
         {
             if (parNumber == 0 || parNumber == 1)
             {
                 return 1;
             }
             else return parNumber * GetFactorial(parNumber - 1);
+        }
+
+        public void PrintValues()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("Вероятность того,что отсутвуют рабочие {0:f}", GetFreeChanelsProbability());
+            sb.AppendLine();
+            sb.AppendFormat("Среднее время ожидания в очереди {0:f}", GetAverageTimeQueueApplications());
+            sb.AppendLine();
+            sb.AppendFormat("Средние потери цеха {0:f4} д.е.", GetFreeChanelsProbability() * 45);
+            
+            Console.WriteLine(sb.ToString());
+            
         }
     }
 }
