@@ -1,5 +1,4 @@
-﻿using ComputerModelling.OneDimensionalLattice;
-using ComputerModelling.QuadraticCongruentMethod;
+﻿using ComputerModelling.QuadraticCongruentMethod;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -13,7 +12,7 @@ namespace Graphic
     public class ViewModel
     {
         private static readonly RandomNumberGenerator _random = new RandomNumberGenerator(6, 7, 3, 4001);
-        private static readonly OneDimensionalLatticeWorker one = new OneDimensionalLatticeWorker(_random, 0, 30, 5, 0.8);
+        
         
         /// <summary>
         /// массив 
@@ -121,17 +120,16 @@ namespace Graphic
             _random.Estimate(_values, out _mX, out _dX);
             TextDx = Math.Round(_dX,4,MidpointRounding.AwayFromZero).ToString();
             TextMx = Math.Round(_mX, 4, MidpointRounding.AwayFromZero).ToString();
-            one.GetFirstN(out _n1, _dX);
-            one.GetSecondN(out _n2, _dX);
-            TextFirstN = Math.Round(_n1, 2, MidpointRounding.AwayFromZero).ToString();
-            TextSecondN = Math.Round(_n2, 2, MidpointRounding.AwayFromZero).ToString();
+            TextFirstN = Math.Round(0.000, 2, MidpointRounding.AwayFromZero).ToString();
+            TextSecondN = Math.Round(0.000, 2, MidpointRounding.AwayFromZero).ToString();
         }
 
         public static double[] GetDataPlot()
         {
             if (_values == null)
             {
-                _values = one.GetValues(_random.G_N);
+                
+                _random.GeneratorData(out _values);
             }
             if (_dataPlot == null)
                 _random.MakeData(_values, out _dataPlot, out _dataFunc, _values.Min(), _values.Max());
@@ -142,7 +140,8 @@ namespace Graphic
         {
             if (_values == null)
             {
-                _values = one.GetValues(_random.G_N);
+                
+                _random.GeneratorData(out _values);
             }
             if (_dataFunc == null)
                 _random.MakeData(_values, out _dataPlot, out _dataFunc, _values.Min(), _values.Max());
