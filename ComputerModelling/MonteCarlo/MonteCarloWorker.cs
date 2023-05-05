@@ -34,7 +34,7 @@ namespace ComputerModelling.MonteCarlo
 
         public static double[] GetProbabilitiesArray(double parN, double parP1, double parP2)
         {
-            RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator(6, 7, 3, 4001);
+          
             Random random = new Random();
             double[] result = new double[6];
             double r;
@@ -48,14 +48,14 @@ namespace ComputerModelling.MonteCarlo
             for (int i = 0; i < parN; i++)
             {
                 n = 2;
-                r = randomNumberGenerator.NextDouble();
+                r = random.NextDouble();
                 if (r < parP1)
                 {
                     //Сбит истребитель
                     n--;
                     
                 }
-                r = randomNumberGenerator.NextDouble();
+                r = random.NextDouble();
                 if (r < parP1)
                 {
                     //Сбит истребитель
@@ -74,7 +74,8 @@ namespace ComputerModelling.MonteCarlo
                 {
                     nE++;
                     nD++;
-                    r = randomNumberGenerator.NextDouble();
+                    nC++;
+                    r = random.NextDouble();
                     if (r < parP2)
                     {
                         //сбит бомбардировщик
@@ -88,7 +89,7 @@ namespace ComputerModelling.MonteCarlo
                 }
                 else //n=2
                 {
-                    r = randomNumberGenerator.NextDouble();
+                    r = random.NextDouble();
                     if (r < parP2)
                     {
                         //сбит бомбардировщик
@@ -98,7 +99,7 @@ namespace ComputerModelling.MonteCarlo
                     }
                     else
                     {
-                        r = randomNumberGenerator.NextDouble();
+                        r = random.NextDouble();
                         if (r < parP2)
                         {
                             //сбит бомбардировщик
