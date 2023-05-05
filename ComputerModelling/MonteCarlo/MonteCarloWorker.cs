@@ -15,7 +15,7 @@ namespace ComputerModelling.MonteCarlo
         }
         public static double GetPC(double parP1)
         {
-            return 1 - (1 - (parP1 * parP1));
+            return 1 - Math.Pow(1 - parP1, 2);
         }
         private static double GetPD(double parP1, double parP2)
         {
@@ -35,6 +35,7 @@ namespace ComputerModelling.MonteCarlo
         public static double[] GetProbabilitiesArray(double parN, double parP1, double parP2)
         {
             RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator(6, 7, 3, 4001);
+            Random random = new Random();
             double[] result = new double[6];
             double r;
             double nA = 0;
